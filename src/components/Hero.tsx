@@ -1,9 +1,56 @@
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ArrowDown } from "lucide-react";
 
 const Hero: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [typingText, setTypingText] = useState("Full Stack Developer | Tech Enthusiast");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+  
+  const phrases = [
+    "Full Stack Developer | Tech Enthusiast",
+    "React & Node.js Expert",
+    "UI/UX Designer",
+    "Problem Solver"
+  ];
+
+  // Typing effect animation
+  useEffect(() => {
+    const tick = () => {
+      const i = loopNum % phrases.length;
+      const fullText = phrases[i];
+      
+      // When deleting, reduce the text by one character, otherwise add one character
+      const updatedText = isDeleting 
+        ? fullText.substring(0, typingText.length - 1) 
+        : fullText.substring(0, typingText.length + 1);
+      
+      setTypingText(updatedText);
+      
+      // Adjust the typing speed
+      if (isDeleting) {
+        setTypingSpeed(80); // Faster when deleting
+      } else {
+        setTypingSpeed(150); // Normal speed when typing
+      }
+      
+      // If done typing, start deleting after a pause
+      if (!isDeleting && updatedText === fullText) {
+        setTimeout(() => setIsDeleting(true), 1500);
+      } 
+      // If done deleting, move to next phrase
+      else if (isDeleting && updatedText === '') {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+        setTypingSpeed(500); // Pause before typing the next phrase
+      }
+    };
+    
+    const timer = setTimeout(tick, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [typingText, isDeleting, loopNum, typingSpeed, phrases]);
 
   // Particle animation effect
   useEffect(() => {
@@ -119,7 +166,7 @@ const Hero: React.FC = () => {
           </h1>
           <div className="typing-container mt-2 mb-6">
             <h2 className="typing-text text-xl md:text-2xl font-medium">
-              Full Stack Developer | Tech Enthusiast
+              {typingText}<span className="typing-cursor">|</span>
             </h2>
           </div>
           <p className="text-lg md:text-xl max-w-2xl mx-auto opacity-80 mb-8">

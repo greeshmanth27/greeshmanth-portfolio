@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { ExternalLink, Github } from "lucide-react";
 
 interface Project {
@@ -14,12 +14,41 @@ interface Project {
 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+  
+  // 3D card effect
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+  };
+  
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return;
+    setIsHovered(false);
+    
+    cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+  };
   
   return (
     <div 
-      className="glass-card overflow-hidden group"
+      ref={cardRef}
+      className="glass-card overflow-hidden group transform-gpu"
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ transition: 'transform 0.2s ease-out' }}
     >
       <div className="relative overflow-hidden h-48 sm:h-64">
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
@@ -34,7 +63,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
             {project.tags.slice(0, 3).map((tag, index) => (
               <span 
                 key={index} 
-                className="px-2 py-1 text-xs font-medium bg-purple/90 text-white rounded"
+                className={`project-badge ${getTagColor(tag)}`}
               >
                 {tag}
               </span>
@@ -70,6 +99,32 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
       </div>
     </div>
   );
+};
+
+// Function to assign different colors to tags
+const getTagColor = (tag: string) => {
+  const tagMap: Record<string, string> = {
+    'React': 'bg-blue-500 text-white',
+    'Next.js': 'bg-black text-white',
+    'Node.js': 'bg-green-600 text-white',
+    'MongoDB': 'bg-green-500 text-white',
+    'PostgreSQL': 'bg-blue-700 text-white',
+    'Firebase': 'bg-yellow-500 text-white',
+    'Tailwind CSS': 'bg-sky-500 text-white',
+    'CSS Grid': 'bg-pink-500 text-white',
+    'Chart.js': 'bg-pink-600 text-white',
+    'Socket.io': 'bg-gray-700 text-white',
+    'Stripe': 'bg-indigo-500 text-white',
+    'Weather API': 'bg-cyan-500 text-white',
+    'Django': 'bg-emerald-600 text-white',
+    'AWS S3': 'bg-orange-500 text-white',
+    'React Native': 'bg-purple-500 text-white',
+    'Redux': 'bg-purple-700 text-white',
+    'Health API': 'bg-red-500 text-white',
+    'Google Maps API': 'bg-blue-600 text-white',
+  };
+  
+  return tagMap[tag] || 'bg-purple/90 text-white';
 };
 
 const Projects: React.FC = () => {
@@ -149,7 +204,7 @@ const Projects: React.FC = () => {
             href="https://github.com" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="btn-primary inline-flex items-center gap-2"
+            className="btn-primary inline-flex items-center gap-2 hover:scale-105 transition-transform"
           >
             <Github className="w-5 h-5" />
             View More on GitHub
