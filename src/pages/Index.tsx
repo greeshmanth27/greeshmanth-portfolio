@@ -43,64 +43,36 @@ const Index = () => {
       observer.observe(section);
     });
     
-    // Create scroll indicator
-    const createScrollIndicator = () => {
-      // Only create on desktop
-      if (window.innerWidth < 768) return;
+    // Custom cursor functionality
+    const handleMouseMove = (e: MouseEvent) => {
+      const cursors = document.querySelectorAll('.custom-cursor::before, .custom-cursor::after');
       
-      const scrollIndicator = document.createElement("div");
-      scrollIndicator.className = "scroll-indicator";
-      
-      const sections = document.querySelectorAll("section[id]");
-      sections.forEach((section) => {
-        const dot = document.createElement("div");
-        dot.className = "scroll-dot";
-        dot.dataset.target = section.id;
-        dot.addEventListener("click", () => {
-          document.getElementById(section.id)?.scrollIntoView({ behavior: "smooth" });
-        });
-        scrollIndicator.appendChild(dot);
-      });
-      
-      document.body.appendChild(scrollIndicator);
-      
-      // Update active dot on scroll
-      const updateActiveDot = () => {
-        const scrollPosition = window.scrollY + window.innerHeight / 2;
+      if (!cursors.length) {
+        const cursorDot = document.createElement('div');
+        cursorDot.className = 'cursor-dot';
+        document.body.appendChild(cursorDot);
         
-        sections.forEach((section) => {
-          const sectionElement = section as HTMLElement;
-          const sectionTop = sectionElement.offsetTop;
-          const sectionHeight = sectionElement.offsetHeight;
-          
-          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            document.querySelectorAll(".scroll-dot").forEach((dot) => {
-              dot.classList.remove("active");
-            });
-            
-            document.querySelector(`.scroll-dot[data-target="${section.id}"]`)?.classList.add("active");
-          }
-        });
-      };
+        const cursorText = document.createElement('div');
+        cursorText.className = 'cursor-text';
+        document.body.appendChild(cursorText);
+      }
       
-      window.addEventListener("scroll", updateActiveDot);
-      updateActiveDot(); // Initialize
+      // Apply CSS variables for cursor position
+      document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
     };
     
-    createScrollIndicator();
+    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       observer.disconnect();
-      const scrollIndicator = document.querySelector(".scroll-indicator");
-      if (scrollIndicator) {
-        scrollIndicator.remove();
-      }
+      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col custom-cursor">
         <Navigation />
         <main className="flex-grow">
           <Hero />
