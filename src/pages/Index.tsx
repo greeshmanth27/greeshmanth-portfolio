@@ -45,19 +45,6 @@ const Index = () => {
     
     // Custom cursor functionality
     const handleMouseMove = (e: MouseEvent) => {
-      const cursors = document.querySelectorAll('.custom-cursor::before, .custom-cursor::after');
-      
-      if (!cursors.length) {
-        const cursorDot = document.createElement('div');
-        cursorDot.className = 'cursor-dot';
-        document.body.appendChild(cursorDot);
-        
-        const cursorText = document.createElement('div');
-        cursorText.className = 'cursor-text';
-        document.body.appendChild(cursorText);
-      }
-      
-      // Apply CSS variables for cursor position
       document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
       document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
     };

@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -99,7 +100,7 @@
   }
 
   .custom-cursor::after {
-    content: "{ }";
+    content: "200";
     position: fixed;
     font-family: monospace;
     color: #8A2BE2;
@@ -131,8 +132,41 @@
   button:hover ~ .custom-cursor::after,
   a:hover .custom-cursor::after,
   button:hover .custom-cursor::after {
-    content: "</>";
+    content: "200 OK";
     color: #A855F7;
+  }
+
+  input:hover ~ .custom-cursor::after,
+  textarea:hover ~ .custom-cursor::after {
+    content: "418 TEAPOT";
+    color: #E879F9;
+  }
+  
+  img:hover ~ .custom-cursor::after {
+    content: "301 MOVED";
+    color: #F97316;
+  }
+  
+  nav:hover ~ .custom-cursor::after {
+    content: "302 FOUND";
+    color: #10B981;
+  }
+  
+  form:hover ~ .custom-cursor::after {
+    content: "POST";
+    color: #06B6D4;
+  }
+  
+  h1:hover ~ .custom-cursor::after,
+  h2:hover ~ .custom-cursor::after,
+  h3:hover ~ .custom-cursor::after {
+    content: "100 CONTINUE";
+    color: #F59E0B;
+  }
+  
+  footer:hover ~ .custom-cursor::after {
+    content: "EOF";
+    color: #64748B;
   }
 }
 
