@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -63,7 +62,6 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Custom portfolio theme colors
 				"purple": {
 					DEFAULT: "#8A2BE2",
 					light: "#A855F7",
@@ -125,6 +123,7 @@ export default {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'typing': 'typing 3.5s steps(40, end), blink .75s step-end infinite',
+				'blink': 'blink .75s step-end infinite',
 				'float': 'float 6s ease-in-out infinite',
 				'fade-in': 'fade-in 0.5s ease-out',
 				'fade-out': 'fade-out 0.5s ease-out',
