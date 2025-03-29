@@ -89,12 +89,14 @@
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl font-bold mb-8 text-foreground relative inline-block;
+    @apply text-3xl md:text-4xl font-bold mb-8 text-foreground inline-block;
   }
   
-  .section-title::after {
-    content: '';
-    @apply absolute bottom-0 left-0 w-1/2 h-1 bg-purple rounded-full;
+  .section-underline {
+    @apply absolute -bottom-2 left-0 w-3/4 h-1 bg-gradient-to-r from-purple to-transparent rounded-full;
+    animation: expand 1.5s ease-out forwards;
+    transform-origin: left;
+    opacity: 0;
   }
   
   .glass-card {
@@ -133,4 +135,59 @@
   .timeline-dot {
     @apply absolute -left-[9px] w-4 h-4 rounded-full bg-purple animate-pulse-glow;
   }
+  
+  .resume-item {
+    @apply relative border-l-2 border-transparent hover:border-purple pl-2;
+    transition: all 0.3s ease;
+  }
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 5px 0 rgba(138, 43, 226, 0.4); }
+  50% { box-shadow: 0 0 20px 5px rgba(138, 43, 226, 0.6); }
+}
+
+@keyframes expand {
+  0% { transform: scaleX(0); opacity: 0; }
+  100% { transform: scaleX(1); opacity: 1; }
+}
+
+@keyframes slide-in {
+  0% { transform: translateX(-20px); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
