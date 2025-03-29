@@ -17,9 +17,11 @@ const Navigation: React.FC = () => {
       // Determine active section for highlighting navigation
       const sections = document.querySelectorAll("section[id]");
       sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.offsetHeight;
-        const sectionId = section.getAttribute("id") || "";
+        // Cast section to HTMLElement to access offsetTop and offsetHeight
+        const sectionElement = section as HTMLElement;
+        const sectionTop = sectionElement.offsetTop - 100;
+        const sectionHeight = sectionElement.offsetHeight;
+        const sectionId = sectionElement.getAttribute("id") || "";
         
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
           setActiveSection(sectionId);
@@ -38,7 +40,7 @@ const Navigation: React.FC = () => {
       setMobileMenuOpen(false);
       setActiveSection(sectionId);
       window.scrollTo({
-        top: section.offsetTop - 80,
+        top: (section as HTMLElement).offsetTop - 80,
         behavior: "smooth",
       });
     }
