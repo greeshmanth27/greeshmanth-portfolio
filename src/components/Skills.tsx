@@ -28,23 +28,23 @@ const SkillCard: React.FC<SkillCardProps> = ({ icon, name, level, color = "#8A2B
 const Skills: React.FC = () => {
   const frontendSkills = [
     { icon: "⚛️", name: "React.js", level: 95, color: "#61DAFB" },
-    { icon: "📱", name: "Responsive Design", level: 90 },
-    { icon: "🎨", name: "UI/UX", level: 85 },
-    { icon: "🔄", name: "State Management", level: 90 },
+    { icon: "📱", name: "Responsive Design", level: 90, color: "#8A2BE2" },
+    { icon: "🎨", name: "UI/UX", level: 85, color: "#8A2BE2" },
+    { icon: "🔄", name: "State Management", level: 90, color: "#8A2BE2" },
   ];
   
   const backendSkills = [
-    { icon: "🔌", name: "Node.js", level: 88 },
-    { icon: "🐍", name: "Django", level: 85 },
-    { icon: "📦", name: "RESTful APIs", level: 92 },
-    { icon: "🗄️", name: "SQL", level: 80 },
+    { icon: "🔌", name: "Node.js", level: 88, color: "#3C873A" },
+    { icon: "🐍", name: "Django", level: 85, color: "#092E20" },
+    { icon: "📦", name: "RESTful APIs", level: 92, color: "#8A2BE2" },
+    { icon: "🗄️", name: "SQL", level: 80, color: "#0078D7" },
   ];
   
   const devOpsSkills = [
-    { icon: "🐳", name: "Docker", level: 75 },
-    { icon: "☁️", name: "AWS", level: 70 },
-    { icon: "🚢", name: "CI/CD", level: 75 },
-    { icon: "📊", name: "Performance Optimization", level: 85 },
+    { icon: "🐳", name: "Docker", level: 75, color: "#2496ED" },
+    { icon: "☁️", name: "AWS", level: 70, color: "#FF9900" },
+    { icon: "🚢", name: "CI/CD", level: 75, color: "#8A2BE2" },
+    { icon: "📊", name: "Performance Optimization", level: 85, color: "#8A2BE2" },
   ];
 
   return (
