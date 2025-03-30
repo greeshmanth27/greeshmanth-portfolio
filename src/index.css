@@ -35,6 +35,8 @@
     --radius: 0.5rem;
     --cursor-x: 0px;
     --cursor-y: 0px;
+    --http-code: "200 OK";
+    --http-color: #A855F7;
   }
 
   .dark {
@@ -101,11 +103,11 @@
   }
 
   .custom-cursor::after {
-    content: "200";
+    content: var(--http-code);
     position: fixed;
     font-family: monospace;
-    color: #8A2BE2;
-    text-shadow: 0 0 5px #8A2BE2;
+    color: var(--http-color);
+    text-shadow: 0 0 5px var(--http-color);
     opacity: 0.9;
     font-size: 12px;
     font-weight: bold;
@@ -114,7 +116,7 @@
     left: calc(var(--cursor-x) + 15px);
     top: var(--cursor-y);
     transform: translateY(-50%);
-    transition: content 0.2s, text-shadow 0.3s;
+    transition: color 0.3s, text-shadow 0.3s;
   }
   
   a:hover, button:hover {
@@ -135,9 +137,9 @@
   button:hover ~ .custom-cursor::after,
   a:hover .custom-cursor::after,
   button:hover .custom-cursor::after {
-    content: "200 OK";
-    color: #A855F7;
-    text-shadow: 0 0 8px #A855F7;
+    content: var(--http-code);
+    color: var(--http-color);
+    text-shadow: 0 0 8px var(--http-color);
   }
 
   input:hover ~ .custom-cursor::after,

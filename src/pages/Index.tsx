@@ -11,8 +11,12 @@ import Statistics from "@/components/Statistics";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { useDynamicCursor } from "@/hooks/useDynamicCursor";
 
 const Index = () => {
+  // Use the dynamic cursor hook
+  useDynamicCursor();
+  
   // Animate sections on scroll
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -43,18 +47,9 @@ const Index = () => {
     document.querySelectorAll("section").forEach((section) => {
       observer.observe(section);
     });
-    
-    // Custom cursor functionality
-    const handleMouseMove = (e: MouseEvent) => {
-      document.documentElement.style.setProperty('--cursor-x', `${e.clientX}px`);
-      document.documentElement.style.setProperty('--cursor-y', `${e.clientY}px`);
-    };
-    
-    window.addEventListener('mousemove', handleMouseMove);
 
     return () => {
       observer.disconnect();
-      window.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 

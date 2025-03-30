@@ -16,11 +16,11 @@ import {
   Cell,
   Legend
 } from 'recharts';
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Settings, ExternalLink } from "lucide-react";
+import { Settings, ExternalLink, RefreshCw, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { refreshCodingStats } from "@/services/coding-stats";
 
 // Default data for statistics (used when not connected to real accounts)
 const defaultLeetCodeData = [
@@ -64,11 +64,13 @@ interface ProfileConfig {
   leetCodeUsername: string;
   hackerRankUsername: string;
   isConnected: boolean;
+  lastUpdated?: string;
 }
 
 const Statistics: React.FC = () => {
   const { toast } = useToast();
   const [showConfig, setShowConfig] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [profileConfig, setProfileConfig] = useState<ProfileConfig>(() => {
     const savedConfig = localStorage.getItem('coding-profiles');
     return savedConfig ? JSON.parse(savedConfig) : {
@@ -95,8 +97,51 @@ const Statistics: React.FC = () => {
     localStorage.setItem('coding-profiles', JSON.stringify(profileConfig));
   }, [profileConfig]);
 
+  // Fetch real-time data when component mounts if profiles are connected
+  useEffect(() => {
+    if (profileConfig.isConnected) {
+      fetchRealTimeData();
+    }
+  }, []);
+
+  // Function to fetch real-time data
+  const fetchRealTimeData = async () => {
+    if (!profileConfig.isConnected) {
+      return;
+    }
+
+    setLoading(true);
+    
+    try {
+      const { leetCodeUsername, hackerRankUsername } = profileConfig;
+      const result = await refreshCodingStats(leetCodeUsername, hackerRankUsername);
+      
+      setLeetCodeData(result.leetCodeData);
+      setHackerRankData(result.hackerRankData);
+      setContestData(result.contestData);
+      
+      setProfileConfig({
+        ...profileConfig,
+        lastUpdated: result.timestamp
+      });
+      
+      toast({
+        title: "Statistics Updated",
+        description: `Your coding stats have been refreshed.`,
+      });
+    } catch (error) {
+      toast({
+        title: "Update Failed",
+        description: "Could not refresh your statistics. Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // Function to connect profiles
-  const connectProfiles = () => {
+  const connectProfiles = async () => {
     if (!profileConfig.leetCodeUsername || !profileConfig.hackerRankUsername) {
       toast({
         title: "Missing Information",
@@ -106,20 +151,40 @@ const Statistics: React.FC = () => {
       return;
     }
 
-    // In a real implementation, we would fetch data from LeetCode and HackerRank APIs here
-    // For demonstration, we'll simulate a successful connection
+    setLoading(true);
+    
+    try {
+      // Fetch real-time data
+      const result = await refreshCodingStats(
+        profileConfig.leetCodeUsername, 
+        profileConfig.hackerRankUsername
+      );
+      
+      setLeetCodeData(result.leetCodeData);
+      setHackerRankData(result.hackerRankData);
+      setContestData(result.contestData);
+      
+      setProfileConfig({
+        ...profileConfig,
+        isConnected: true,
+        lastUpdated: result.timestamp
+      });
 
-    setProfileConfig({
-      ...profileConfig,
-      isConnected: true
-    });
+      toast({
+        title: "Profiles Connected",
+        description: "Your LeetCode and HackerRank profiles have been connected successfully!",
+      });
 
-    toast({
-      title: "Profiles Connected",
-      description: "Your LeetCode and HackerRank profiles have been connected successfully!",
-    });
-
-    setShowConfig(false);
+      setShowConfig(false);
+    } catch (error) {
+      toast({
+        title: "Connection Failed",
+        description: "Could not connect to your profiles. Please check your usernames and try again.",
+        variant: "destructive"
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   // Function to open profile links
@@ -144,19 +209,50 @@ const Statistics: React.FC = () => {
     window.open(url, '_blank');
   };
 
+  // Format the last updated time
+  const getLastUpdatedText = () => {
+    if (!profileConfig.lastUpdated) {
+      return "Never updated";
+    }
+    
+    try {
+      const date = new Date(profileConfig.lastUpdated);
+      return `Last updated: ${date.toLocaleDateString()} at ${date.toLocaleTimeString()}`;
+    } catch (e) {
+      return "Last updated: Unknown";
+    }
+  };
+
   return (
     <section id="statistics" className="py-20">
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between mb-8">
           <h2 className="section-title text-center">Coding Statistics</h2>
-          <Button 
-            variant="outline" 
-            size="icon" 
-            onClick={() => setShowConfig(!showConfig)}
-            className="ml-2"
-          >
-            <Settings className="h-4 w-4" />
-          </Button>
+          <div className="flex items-center space-x-2">
+            {profileConfig.isConnected && (
+              <Button 
+                variant="outline" 
+                size="sm"
+                onClick={fetchRealTimeData}
+                disabled={loading}
+                className="flex items-center"
+              >
+                {loading ? (
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                ) : (
+                  <RefreshCw className="h-4 w-4 mr-2" />
+                )}
+                Refresh
+              </Button>
+            )}
+            <Button 
+              variant="outline" 
+              size="icon" 
+              onClick={() => setShowConfig(!showConfig)}
+            >
+              <Settings className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
         
         {showConfig && (
@@ -164,7 +260,7 @@ const Statistics: React.FC = () => {
             <CardHeader>
               <CardTitle className="text-xl">Connect Your Profiles</CardTitle>
               <CardDescription>
-                Enter your LeetCode and HackerRank usernames to display your real statistics
+                Enter your LeetCode and HackerRank usernames to display your real-time statistics
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -192,11 +288,24 @@ const Statistics: React.FC = () => {
                   })}
                 />
               </div>
-              <Button onClick={connectProfiles}>
-                {profileConfig.isConnected ? "Update Connection" : "Connect Profiles"}
+              <Button onClick={connectProfiles} disabled={loading}>
+                {loading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Connecting...
+                  </>
+                ) : (
+                  profileConfig.isConnected ? "Update Connection" : "Connect Profiles"
+                )}
               </Button>
             </CardContent>
           </Card>
+        )}
+        
+        {profileConfig.isConnected && (
+          <div className="text-center mb-4">
+            <p className="text-sm text-muted-foreground">{getLastUpdatedText()}</p>
+          </div>
         )}
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
@@ -207,6 +316,7 @@ const Statistics: React.FC = () => {
                 <CardTitle 
                   className="text-2xl flex items-center cursor-pointer group"
                   onClick={() => openProfile('leetcode')}
+                  data-profile="leetcode"
                 >
                   LeetCode
                   <ExternalLink className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -283,6 +393,7 @@ const Statistics: React.FC = () => {
                 <CardTitle 
                   className="text-2xl flex items-center cursor-pointer group"
                   onClick={() => openProfile('hackerrank')}
+                  data-profile="hackerrank"
                 >
                   HackerRank
                   <ExternalLink className="ml-2 h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity" />
