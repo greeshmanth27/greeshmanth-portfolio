@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -179,6 +178,12 @@
   table:hover ~ .custom-cursor::after {
     content: "206 PARTIAL";
     color: #38BDF8;
+  }
+  
+  /* Adding status codes for profile links */
+  [data-profile]:hover ~ .custom-cursor::after {
+    content: "301 REDIRECT";
+    color: #F97316;
   }
 }
 
