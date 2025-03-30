@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, BarChart } from "lucide-react";
 
 const Navigation: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -107,6 +107,16 @@ const Navigation: React.FC = () => {
             }}
           >
             Skills
+          </a>
+          <a
+            href="#statistics"
+            className={`nav-link ${activeSection === "statistics" ? "text-purple active" : ""}`}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("statistics");
+            }}
+          >
+            Statistics
           </a>
           <a
             href="#projects"
@@ -224,6 +234,16 @@ const Navigation: React.FC = () => {
             }}
           >
             Skills
+          </a>
+          <a
+            href="#statistics"
+            className={`nav-link block py-3 text-lg ${activeSection === "statistics" ? "text-purple" : ""}`}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("statistics");
+            }}
+          >
+            Statistics
           </a>
           <a
             href="#projects"

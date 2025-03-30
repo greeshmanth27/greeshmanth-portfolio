@@ -35,6 +35,8 @@
     --radius: 0.5rem;
     --cursor-x: 0px;
     --cursor-y: 0px;
+    --http-code: "200 OK";
+    --http-color: #A855F7;
   }
 
   .dark {
@@ -86,32 +88,35 @@
   .custom-cursor::before {
     content: "";
     position: fixed;
-    width: 8px;
-    height: 8px;
-    background-color: #8A2BE2;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
+    background-color: transparent;
+    border: 2px solid #8A2BE2;
+    box-shadow: 0 0 10px #8A2BE2, 0 0 20px rgba(138, 43, 226, 0.4);
     pointer-events: none;
     z-index: 9999;
     left: var(--cursor-x);
     top: var(--cursor-y);
     transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, background-color 0.3s;
+    transition: width 0.2s, height 0.2s, background-color 0.3s, box-shadow 0.3s;
   }
 
   .custom-cursor::after {
-    content: "200";
+    content: var(--http-code);
     position: fixed;
     font-family: monospace;
-    color: #8A2BE2;
-    opacity: 0.7;
+    color: var(--http-color);
+    text-shadow: 0 0 5px var(--http-color);
+    opacity: 0.9;
     font-size: 12px;
     font-weight: bold;
     pointer-events: none;
     z-index: 9999;
-    left: calc(var(--cursor-x) + 10px);
+    left: calc(var(--cursor-x) + 15px);
     top: var(--cursor-y);
     transform: translateY(-50%);
-    transition: content 0.2s;
+    transition: color 0.3s, text-shadow 0.3s;
   }
   
   a:hover, button:hover {
@@ -122,17 +127,19 @@
   button:hover ~ .custom-cursor::before,
   a:hover .custom-cursor::before,
   button:hover .custom-cursor::before {
-    width: 12px;
-    height: 12px;
-    background-color: #A855F7;
+    width: 16px;
+    height: 16px;
+    background-color: rgba(138, 43, 226, 0.1);
+    box-shadow: 0 0 15px #8A2BE2, 0 0 30px rgba(138, 43, 226, 0.6);
   }
   
   a:hover ~ .custom-cursor::after,
   button:hover ~ .custom-cursor::after,
   a:hover .custom-cursor::after,
   button:hover .custom-cursor::after {
-    content: "200 OK";
-    color: #A855F7;
+    content: var(--http-code);
+    color: var(--http-color);
+    text-shadow: 0 0 8px var(--http-color);
   }
 
   input:hover ~ .custom-cursor::after,
@@ -167,58 +174,7 @@
     content: "EOF";
     color: #64748B;
   }
-} */
-
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-    cursor: default;
-  }
-
-  .custom-cursor {
-    position: relative;
-  }
-
-  .custom-cursor::before {
-    content: "";
-    position: fixed;
-    width: 6px;
-    height: 6px;
-    background-color: #8A2BE2;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 9999;
-    left: var(--cursor-x);
-    top: var(--cursor-y);
-    transform: translate(-50%, -50%);
-    transition: transform 0.1s ease-out, background-color 0.2s;
-    box-shadow: 0 0 6px rgba(138, 43, 226, 0.5);
-  }
-
-  a:hover ~ .custom-cursor::before,
-  button:hover ~ .custom-cursor::before {
-    width: 8px;
-    height: 8px;
-    background-color: #A855F7;
-    box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
-  }
-
-  img:hover ~ .custom-cursor::before {
-    background-color: #F97316;
-    box-shadow: 0 0 8px rgba(249, 115, 22, 0.6);
-  }
-
-  form:hover ~ .custom-cursor::before {
-    background-color: #06B6D4;
-  }
 }
-
 
 @layer components {
   .typing-container {
@@ -249,7 +205,7 @@
   
   .glass-card1 {
     @apply rounded-xl shadow-lg backdrop-blur-lg bg-white/10 dark:bg-black/20 border border-white/20 dark:border-white/10;
-    transform-style: preserve-3d; /* Enable 3D transformations */
+    transform-style: preserve-3d; Enable 3D transformations
     perspective: 1000px; /* Add perspective for 3D effect */
     transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth transition */
   }
