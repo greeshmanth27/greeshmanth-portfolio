@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -23,7 +22,6 @@ import { Settings, ExternalLink, RefreshCw, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { refreshCodingStats } from "@/services/coding-stats";
 
-// Default data for statistics (used when not connected to real accounts)
 const defaultLeetCodeData = [
   { difficulty: 'Easy', solved: 120, total: 150, color: '#00b8a3' },
   { difficulty: 'Medium', solved: 85, total: 150, color: '#ffc01e' },
@@ -45,10 +43,8 @@ const defaultContestData = [
   { name: 'Google Kickstart 2023', rank: 1200, outOf: 25000 },
 ];
 
-// Colors for the pie chart
 const COLORS = ['#00b8a3', '#ffc01e', '#ff375f', '#6c5ce7'];
 
-// Function to render star ratings
 const StarRating = ({ rating }: { rating: number }) => {
   return (
     <div className="flex">
@@ -75,8 +71,8 @@ const Statistics: React.FC = () => {
   const [profileConfig, setProfileConfig] = useState<ProfileConfig>(() => {
     const savedConfig = localStorage.getItem('coding-profiles');
     return savedConfig ? JSON.parse(savedConfig) : {
-      leetCodeUsername: '',
-      hackerRankUsername: '',
+      leetCodeUsername: 'greechusmart',
+      hackerRankUsername: 'greeshmanth27',
       isConnected: false
     };
   });
@@ -85,7 +81,6 @@ const Statistics: React.FC = () => {
   const [hackerRankData, setHackerRankData] = useState(defaultHackerRankData);
   const [contestData, setContestData] = useState(defaultContestData);
   
-  // Calculate statistics for pie chart
   const totalSolvedProblems = leetCodeData.reduce((acc, item) => acc + item.solved, 0);
   const pieChartData = leetCodeData.map(item => ({
     name: item.difficulty,
@@ -93,19 +88,20 @@ const Statistics: React.FC = () => {
     color: item.color
   }));
 
-  // Save profile configuration
   useEffect(() => {
     localStorage.setItem('coding-profiles', JSON.stringify(profileConfig));
   }, [profileConfig]);
 
-  // Fetch real-time data when component mounts if profiles are connected
   useEffect(() => {
-    if (profileConfig.isConnected) {
+    if (profileConfig.leetCodeUsername === 'greechusmart' && 
+        profileConfig.hackerRankUsername === 'greeshmanth27' && 
+        !profileConfig.isConnected) {
+      connectProfiles();
+    } else if (profileConfig.isConnected) {
       fetchRealTimeData();
     }
   }, []);
 
-  // Function to fetch real-time data
   const fetchRealTimeData = async () => {
     if (!profileConfig.isConnected) {
       return;
@@ -141,7 +137,6 @@ const Statistics: React.FC = () => {
     }
   };
 
-  // Function to connect profiles
   const connectProfiles = async () => {
     if (!profileConfig.leetCodeUsername || !profileConfig.hackerRankUsername) {
       toast({
@@ -155,7 +150,6 @@ const Statistics: React.FC = () => {
     setLoading(true);
     
     try {
-      // Fetch real-time data
       const result = await refreshCodingStats(
         profileConfig.leetCodeUsername, 
         profileConfig.hackerRankUsername
@@ -188,7 +182,6 @@ const Statistics: React.FC = () => {
     }
   };
 
-  // Function to open profile links
   const openProfile = (platform: 'leetcode' | 'hackerrank') => {
     if (!profileConfig.isConnected) {
       toast({
@@ -205,12 +198,11 @@ const Statistics: React.FC = () => {
     
     const url = platform === 'leetcode'
       ? `https://leetcode.com/${username}`
-      : `https://www.hackerrank.com/${username}`;
+      : `https://www.hackerrank.com/profile/${username}`;
     
     window.open(url, '_blank');
   };
 
-  // Format the last updated time
   const getLastUpdatedText = () => {
     if (!profileConfig.lastUpdated) {
       return "Never updated";
@@ -311,7 +303,7 @@ const Statistics: React.FC = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
           {/* LeetCode Card */}
-          <Card className="glass-card1">
+          <Card className="glass-card">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle 
@@ -388,7 +380,7 @@ const Statistics: React.FC = () => {
           </Card>
 
           {/* HackerRank Card */}
-          <Card className="glass-card1">
+          <Card className="glass-card">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle 
