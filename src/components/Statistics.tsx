@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -245,18 +246,18 @@ const Statistics: React.FC = () => {
                 Refresh
               </Button>
             )}
-            <Button 
+            {/* <Button 
               variant="outline" 
               size="icon" 
               onClick={() => setShowConfig(!showConfig)}
             >
               <Settings className="h-4 w-4" />
-            </Button>
+            </Button> */}
           </div>
         </div>
         
         {showConfig && (
-          <Card className="mb-8 glass-card">
+          <Card className="mb-8 glass-card1">
             <CardHeader>
               <CardTitle className="text-xl">Connect Your Profiles</CardTitle>
               <CardDescription>
@@ -310,7 +311,7 @@ const Statistics: React.FC = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
           {/* LeetCode Card */}
-          <Card className="glass-card">
+          <Card className="glass-card1">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle 
@@ -387,7 +388,7 @@ const Statistics: React.FC = () => {
           </Card>
 
           {/* HackerRank Card */}
-          <Card className="glass-card">
+          <Card className="glass-card1">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle 
