@@ -31,13 +31,15 @@ const Skills: React.FC = () => {
     { icon: "📱", name: "Responsive Design", level: 90, color: "#8A2BE2" },
     { icon: "🔄", name: "State Management (Redux, Zustand)", level: 90, color: "#8A2BE2" },
     { icon: "🎨", name: "UI/UX & Tailwind CSS", level: 85, color: "#38BDF8" },
+    { icon: "🌐", name: "HTML, CSS & JavaScript", level: 90, color: "#F7DF1E" }
   ];
   
   const backendSkills = [
-    { icon: "☕", name: "Spring Boot & Microservices", level: 90, color: "#FFA500" },
-    { icon: "🐍", name: "Django & Node.js", level: 85, color: "#092E20" },
+    { icon: "☕", name: "Spring Boot & Microservices", level: 70, color: "#FFA500" },
+    { icon: "🐍", name: "Django & Node.js", level: 70, color: "#092E20" },
     { icon: "📦", name: "REST & GraphQL APIs", level: 92, color: "#8A2BE2" },
     { icon: "🗄️", name: "SQL, PostgreSQL & MongoDB", level: 80, color: "#0078D7" },
+    { icon: "🚀", name: "Java & Python", level: 80, color: "#3776AB" }
   ];
   
   const devOpsSkills = [
