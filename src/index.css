@@ -168,6 +168,18 @@
     content: "EOF";
     color: #64748B;
   }
+
+  /* Adding status code for charts & tables */
+  .recharts-wrapper:hover ~ .custom-cursor::after,
+  .recharts-surface:hover ~ .custom-cursor::after {
+    content: "202 ACCEPTED";
+    color: #7DD3FC;
+  }
+
+  table:hover ~ .custom-cursor::after {
+    content: "206 PARTIAL";
+    color: #38BDF8;
+  }
 }
 
 @layer components {
