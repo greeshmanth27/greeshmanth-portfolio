@@ -197,8 +197,8 @@ const Statistics: React.FC = () => {
       : profileConfig.hackerRankUsername;
     
     const url = platform === 'leetcode'
-      ? `https://leetcode.com/${username}`
-      : `https://www.hackerrank.com/profile/${username}`;
+      ? `https://leetcode.comu/greechusmart/`
+      : `https://www.hackerrank.com/profile/greeshmanth27`;
     
     window.open(url, '_blank');
   };
@@ -303,7 +303,7 @@ const Statistics: React.FC = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
           {/* LeetCode Card */}
-          <Card className="glass-card">
+          <Card className="glass-card1">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle 
@@ -380,7 +380,7 @@ const Statistics: React.FC = () => {
           </Card>
 
           {/* HackerRank Card */}
-          <Card className="glass-card">
+          <Card className="glass-card1">
             <CardHeader>
               <div className="flex items-center justify-between">
                 <CardTitle 

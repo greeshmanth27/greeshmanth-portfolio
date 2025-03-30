@@ -3,19 +3,23 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowDown } from "lucide-react";
 
+const phrases = [
+  "Full Stack Developer | Problem Solver",
+  "React, Next.js & Django Enthusiast",
+  "Spring Boot & Microservices Developer",
+  "Cybersecurity & Cloud Computing Learner",
+  "Passionate About Scalable Web Apps"
+  ];
+
 const Hero: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [typingText, setTypingText] = useState("Full Stack Developer | Tech Enthusiast");
+  const [typingText, setTypingText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
   
-  const phrases = [
-    "Full Stack Developer | Tech Enthusiast",
-    "React & Node.js Expert",
-    "UI/UX Designer",
-    "Problem Solver"
-  ];
+   
+    
 
   // Typing effect animation
   useEffect(() => {
@@ -34,7 +38,7 @@ const Hero: React.FC = () => {
       if (isDeleting) {
         setTypingSpeed(80); // Faster when deleting
       } else {
-        setTypingSpeed(150); // Normal speed when typing
+        setTypingSpeed(200); // Normal speed when typing
       }
       
       // If done typing, start deleting after a pause
@@ -51,7 +55,7 @@ const Hero: React.FC = () => {
     
     const timer = setTimeout(tick, typingSpeed);
     return () => clearTimeout(timer);
-  }, [typingText, isDeleting, loopNum, typingSpeed, phrases]);
+  }, [typingText, isDeleting, loopNum, typingSpeed]);
 
   // Particle animation effect
   useEffect(() => {
@@ -163,11 +167,11 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-6 z-10 text-center">
         <div className="animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold mb-4">
-            Hi, I'm <span className="text-purple">Greeshmanth</span> 👋
+            Hi, I'm <span className="text-purple">Greeshmanth Pokuru</span> 👋
           </h1>
           <div className="typing-container mt-2 mb-6">
             <h2 className="typing-text text-xl md:text-2xl font-medium">
-              {typingText}<span className="typing-cursor">|</span>
+              {typingText}<span className="typing-cursor"> </span>
             </h2>
           </div>
           <p className="text-lg md:text-xl max-w-2xl mx-auto opacity-80 mb-8">

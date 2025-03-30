@@ -97,23 +97,25 @@ const Projects: React.FC = () => {
 
   const projects: Project[] = [
     {
-      id: 1,
-      title: "Task Management App",
-      description: "A full-stack task management application with drag-and-drop functionality, user authentication, and real-time updates.",
-      image: "https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3",
-      tags: ["React", "Node.js", "MongoDB", "Socket.io"],
-      demoLink: "#",
-      repoLink: "#",
+      "id": 1,
+      "title": "Villa Booking Website",
+      "description": "A responsive villa booking website built using HTML, CSS, and Bootstrap. Features an elegant UI, property listings, and user-friendly navigation.",
+      "image": "https://cf.bstatic.com/xdata/images/hotel/max1024x768/316679440.jpg?k=deb39a46f5b90bdd83b556ff91d101d7130ff0ef88c086500b934c3aac0746f4&o=&hp=1",
+      "tags": ["HTML", "CSS", "Bootstrap"],
+      "demoLink": "https://greeshmanth27.github.io/Villa_project/",
+      "repoLink": "https://github.com/greeshmanth27/Villa_project.git"
     },
+    
     {
-      id: 2,
-      title: "E-commerce Platform",
-      description: "A modern e-commerce solution with product catalog, shopping cart, payment integration, and admin dashboard.",
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1632&ixlib=rb-4.0.3",
-      tags: ["Next.js", "Stripe", "PostgreSQL", "Tailwind CSS"],
-      demoLink: "#",
-      repoLink: "#",
+      "id": 2,
+      "title": "Image Puzzle Game",
+      "description": "An interactive image puzzle game built using HTML, CSS, Bootstrap, and JavaScript. Features drag-and-drop functionality and a timer-based challenge.",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjHGPpMxuX3_32rzOwfEh4t_7pVojsEPut6g&s",
+      "tags": ["HTML", "CSS", "Bootstrap", "JavaScript"],
+      "demoLink": "https://greeshmanth27.github.io/imagePuzzle/",
+      "repoLink": "https://github.com/greeshmanth27/imagePuzzle.git"
     },
+    
     {
       id: 3,
       title: "Weather Dashboard",

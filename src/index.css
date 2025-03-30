@@ -78,102 +78,49 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
-    cursor: none;
+    cursor: default;
   }
   
-  .custom-cursor {
-    position: relative;
-  }
-  
-  .custom-cursor::before {
-    content: "";
-    position: fixed;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: transparent;
-    border: 2px solid #8A2BE2;
-    box-shadow: 0 0 10px #8A2BE2, 0 0 20px rgba(138, 43, 226, 0.4);
-    pointer-events: none;
-    z-index: 9999;
-    left: var(--cursor-x);
-    top: var(--cursor-y);
-    transform: translate(-50%, -50%);
-    transition: width 0.2s, height 0.2s, background-color 0.3s, box-shadow 0.3s;
-  }
+ 
+/* Theme-based cursor color */
+body.dark {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="8" fill="%23A855F7"/></svg>') 16 16, auto; /* Purple cursor for dark theme */
+}
 
-  .custom-cursor::after {
-    content: var(--http-code);
-    position: fixed;
-    font-family: monospace;
-    color: var(--http-color);
-    text-shadow: 0 0 5px var(--http-color);
-    opacity: 0.9;
-    font-size: 12px;
-    font-weight: bold;
-    pointer-events: none;
-    z-index: 9999;
-    left: calc(var(--cursor-x) + 15px);
-    top: var(--cursor-y);
-    transform: translateY(-50%);
-    transition: color 0.3s, text-shadow 0.3s;
-  }
-  
-  a:hover, button:hover {
-    cursor: none;
-  }
-  
-  a:hover ~ .custom-cursor::before,
-  button:hover ~ .custom-cursor::before,
-  a:hover .custom-cursor::before,
-  button:hover .custom-cursor::before {
-    width: 16px;
-    height: 16px;
-    background-color: rgba(138, 43, 226, 0.1);
-    box-shadow: 0 0 15px #8A2BE2, 0 0 30px rgba(138, 43, 226, 0.6);
-  }
-  
-  a:hover ~ .custom-cursor::after,
-  button:hover ~ .custom-cursor::after,
-  a:hover .custom-cursor::after,
-  button:hover .custom-cursor::after {
-    content: var(--http-code);
-    color: var(--http-color);
-    text-shadow: 0 0 8px var(--http-color);
-  }
+body:not(.dark) {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="8" fill="%23000000"/></svg>') 16 16, auto; /* Black cursor for light theme */
+}
 
-  input:hover ~ .custom-cursor::after,
-  textarea:hover ~ .custom-cursor::after {
-    content: "418 TEAPOT";
-    color: #E879F9;
-  }
-  
-  img:hover ~ .custom-cursor::after {
-    content: "301 MOVED";
-    color: #F97316;
-  }
-  
-  nav:hover ~ .custom-cursor::after {
-    content: "302 FOUND";
-    color: #10B981;
-  }
-  
-  form:hover ~ .custom-cursor::after {
-    content: "POST";
-    color: #06B6D4;
-  }
-  
-  h1:hover ~ .custom-cursor::after,
-  h2:hover ~ .custom-cursor::after,
-  h3:hover ~ .custom-cursor::after {
-    content: "100 CONTINUE";
-    color: #F59E0B;
-  }
-  
-  footer:hover ~ .custom-cursor::after {
-    content: "EOF";
-    color: #64748B;
-  }
+/* Remove all custom cursor styles */
+.custom-cursor {
+  display: none; /* Hide the custom cursor element */
+}
+
+.custom-cursor::before,
+.custom-cursor::after {
+  display: none; /* Remove any additional elements related to the custom cursor */
+}
+
+a:hover, button:hover,
+a:hover ~ .custom-cursor::before,
+button:hover ~ .custom-cursor::before,
+a:hover .custom-cursor::before,
+button:hover .custom-cursor::before,
+a:hover ~ .custom-cursor::after,
+button:hover ~ .custom-cursor::after,
+a:hover .custom-cursor::after,
+button:hover .custom-cursor::after,
+input:hover ~ .custom-cursor::after,
+textarea:hover ~ .custom-cursor::after,
+img:hover ~ .custom-cursor::after,
+nav:hover ~ .custom-cursor::after,
+form:hover ~ .custom-cursor::after,
+h1:hover ~ .custom-cursor::after,
+h2:hover ~ .custom-cursor::after,
+h3:hover ~ .custom-cursor::after,
+footer:hover ~ .custom-cursor::after {
+  cursor: default; /* Ensure the default cursor is used */
+}
 }
 
 @layer components {

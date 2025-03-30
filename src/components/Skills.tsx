@@ -27,25 +27,25 @@ const SkillCard: React.FC<SkillCardProps> = ({ icon, name, level, color = "#8A2B
 
 const Skills: React.FC = () => {
   const frontendSkills = [
-    { icon: "⚛️", name: "React.js", level: 95, color: "#61DAFB" },
+    { icon: "⚛️", name: "React.js & Next.js", level: 95, color: "#61DAFB" },
     { icon: "📱", name: "Responsive Design", level: 90, color: "#8A2BE2" },
-    { icon: "🎨", name: "UI/UX", level: 85, color: "#8A2BE2" },
-    { icon: "🔄", name: "State Management", level: 90, color: "#8A2BE2" },
+    { icon: "🔄", name: "State Management (Redux, Zustand)", level: 90, color: "#8A2BE2" },
+    { icon: "🎨", name: "UI/UX & Tailwind CSS", level: 85, color: "#38BDF8" },
   ];
   
   const backendSkills = [
-    { icon: "🔌", name: "Node.js", level: 88, color: "#3C873A" },
-    { icon: "🐍", name: "Django", level: 85, color: "#092E20" },
-    { icon: "📦", name: "RESTful APIs", level: 92, color: "#8A2BE2" },
-    { icon: "🗄️", name: "SQL", level: 80, color: "#0078D7" },
+    { icon: "☕", name: "Spring Boot & Microservices", level: 90, color: "#FFA500" },
+    { icon: "🐍", name: "Django & Node.js", level: 85, color: "#092E20" },
+    { icon: "📦", name: "REST & GraphQL APIs", level: 92, color: "#8A2BE2" },
+    { icon: "🗄️", name: "SQL, PostgreSQL & MongoDB", level: 80, color: "#0078D7" },
   ];
   
   const devOpsSkills = [
-    { icon: "🐳", name: "Docker", level: 75, color: "#2496ED" },
-    { icon: "☁️", name: "AWS", level: 70, color: "#FF9900" },
-    { icon: "🚢", name: "CI/CD", level: 75, color: "#8A2BE2" },
+    { icon: "☁️", name: "AWS & Cloud Computing", level: 75, color: "#FF9900" },
+    { icon: "🚢", name: "CI/CD (GitHub Actions)", level: 80, color: "#8A2BE2" },
     { icon: "📊", name: "Performance Optimization", level: 85, color: "#8A2BE2" },
   ];
+  
 
   return (
     <section id="skills" className="py-20 bg-secondary/30">
@@ -102,7 +102,7 @@ const Skills: React.FC = () => {
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-semibold mb-6">Other Technical Skills</h3>
           <div className="flex flex-wrap justify-center gap-3">
-            {["TypeScript", "Redux", "Next.js", "GraphQL", "MongoDB", "PostgreSQL", "Git", "Webpack", "Jest", "Cypress", "Figma", "Tailwind CSS"].map((skill, index) => (
+            {["TypeScript", "Redux", "Next.js", "GraphQL", "MongoDB", "PostgreSQL", "Git", "Tailwind CSS","Git and Github","MERN Stack"].map((skill, index) => (
               <span
                 key={index}
                 className="px-4 py-2 bg-secondary rounded-full text-sm font-medium hover:bg-purple hover:text-white transition-colors duration-300"

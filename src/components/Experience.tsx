@@ -44,7 +44,7 @@ const Certification: React.FC<{
   return (
     <Card className="glass-card overflow-hidden transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
       <div className="flex flex-col md:flex-row">
-        <div className="md:w-1/3 h-full">
+        <div className="md:w-1/3 h-100">
           <img src={image} alt={title} className="w-full h-full object-cover" />
         </div>
         <div className="md:w-2/3">
@@ -79,50 +79,39 @@ const Certification: React.FC<{
 const Experience: React.FC = () => {
   const workExperience = [
     {
-      id: 1,
-      date: "2022 - Present",
-      title: "Senior Full Stack Developer",
-      organization: "Tech Innovations Inc.",
-      description: "Lead developer for enterprise web applications using React, Node.js, and PostgreSQL. Implemented CI/CD pipelines and mentored junior developers."
+      "id": 1,
+      "date": "2025 - Present",
+      "title": "Technical Specialist Intern",
+      "organization": "Warp Drive Tech Works",
+      "description": "Worked as a Python Full Stack Developer, building and optimizing enterprise web applications using Django, React.js, and PostgreSQL. Gained experience in backend development, API integrations, and improving application performance."
     },
+    
     {
-      id: 2,
-      date: "2020 - 2022",
-      title: "Frontend Developer",
-      organization: "WebSolutions Co.",
-      description: "Developed responsive user interfaces for client projects. Collaborated with designers and backend developers to implement features and improve performance."
-    },
-    {
-      id: 3,
-      date: "2018 - 2020",
-      title: "Web Developer",
-      organization: "Digital Agency",
-      description: "Built websites and web applications for various clients using modern JavaScript frameworks and CSS preprocessors."
+      "id": 2,
+      "date": "2023 - 2023",
+      "title": "Software Engineer Intern",
+      "organization": "BlackBuck Engineers PVT Ltd.",
+      "description": "Worked on C, Data Structures, Java, and Spring Boot, gaining hands-on backend development experience. Developed a Library Catalog system using Java and Spring Boot, optimizing data management and retrieval."
     }
+    
   ];
   
   const education = [
     {
-      id: 1,
-      date: "2016 - 2018",
-      title: "MSc in Computer Science",
-      organization: "Tech University",
-      description: "Specialized in Web Technologies and Distributed Systems. Graduated with honors."
+      "id": 1,
+      "date": "2024 - 2025",
+      "title": "MERN Full Stack Course",
+      "organization": "10000 Coders",
+      "description": "Comprehensive training in modern web development, covering React.js, Node.js, Express.js, and MongoDB. Focused on building scalable and high-performance applications."
     },
     {
-      id: 2,
-      date: "2012 - 2016",
-      title: "BSc in Computer Science",
-      organization: "University of Technology",
-      description: "Focused on Software Engineering and Database Systems. Participated in several hackathons and coding competitions."
-    },
-    {
-      id: 3,
-      date: "2011 - 2012",
-      title: "Web Development Bootcamp",
-      organization: "Coding Institute",
-      description: "Intensive 6-month program covering full stack web development fundamentals."
+      "id": 2,
+      "date": "2020 - 2024",
+      "organization": "PBR Visvodaya Institute of Technology and Science",
+      "title": "B.Tech in Computer Science and Engineering (Specialization in IoT)",
+      "description": "Completed a four-year undergraduate program focusing on core computer science concepts, IoT technologies, software development, and full-stack web development."
     }
+    
   ];
 
   const certifications = [
@@ -155,12 +144,12 @@ const Experience: React.FC = () => {
     },
     {
       id: 4,
-      title: "Full Stack JavaScript Techdegree",
-      issuer: "Treehouse",
-      date: "August 2022",
+      title: "Mern Fullstack",
+      issuer: "10000 coders",
+      date: "JAnuaryy 2025",
       description: "Comprehensive program covering front-end and back-end JavaScript development including Node.js, Express, and MongoDB.",
-      image: "https://static.teamtreehouse.com/assets/content/techdegree/images/full-stack-javascript.jpg",
-      link: "https://teamtreehouse.com/verify/XXXXXXXXXX"
+      image: "https://images.prismic.io/loco-blogs/79328284-f97b-489f-924c-eb3b17e34b56_image2.png?auto=compress%2Cformat&rect=0%2C0%2C1999%2C1124&w=3840&fit=max",
+      link: "https://drive.google.com/file/d/1a33Q5nCy6RE4_8olnbhXrTuB0l4pysQx/view?usp=sharing"
     }
   ];
 
