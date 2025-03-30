@@ -31,7 +31,7 @@ const About: React.FC = () => {
             </p>
           </div>
           
-          <div className="glass-card p-8">
+          <div className="glass-card1 p-8">
             <h3 className="text-2xl font-bold mb-6 text-center">What I Do</h3>
             <div className="grid grid-cols-2 gap-6">
               <div className="flex flex-col items-center text-center space-y-3 p-4 rounded-lg hover:bg-primary/5 transition-colors">

@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -69,7 +68,7 @@
   }
 }
 
-@layer base {
+/* @layer base {
   * {
     @apply border-border;
   }
@@ -168,7 +167,58 @@
     content: "EOF";
     color: #64748B;
   }
+} */
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    cursor: default;
+  }
+
+  .custom-cursor {
+    position: relative;
+  }
+
+  .custom-cursor::before {
+    content: "";
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background-color: #8A2BE2;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    left: var(--cursor-x);
+    top: var(--cursor-y);
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out, background-color 0.2s;
+    box-shadow: 0 0 6px rgba(138, 43, 226, 0.5);
+  }
+
+  a:hover ~ .custom-cursor::before,
+  button:hover ~ .custom-cursor::before {
+    width: 8px;
+    height: 8px;
+    background-color: #A855F7;
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+  }
+
+  img:hover ~ .custom-cursor::before {
+    background-color: #F97316;
+    box-shadow: 0 0 8px rgba(249, 115, 22, 0.6);
+  }
+
+  form:hover ~ .custom-cursor::before {
+    background-color: #06B6D4;
+  }
 }
+
 
 @layer components {
   .typing-container {
@@ -197,8 +247,27 @@
     @apply w-3/4;
   }
   
+  .glass-card1 {
+    @apply rounded-xl shadow-lg backdrop-blur-lg bg-white/10 dark:bg-black/20 border border-white/20 dark:border-white/10;
+    transform-style: preserve-3d; /* Enable 3D transformations */
+    perspective: 1000px; /* Add perspective for 3D effect */
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth transition */
+  }
   .glass-card {
-    @apply rounded-xl shadow-lg backdrop-blur-lg bg-white/10 dark:bg-black/20 border border-white/20 dark:border-white/10 transition-all duration-300;
+    @apply rounded-xl shadow-lg backdrop-blur-lg bg-white/10 dark:bg-black/20 border border-white/20 dark:border-white/10;
+    transform-style: preserve-3d; /* Enable 3D transformations */
+    perspective: 1000px; /* Add perspective for 3D effect */
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth transition */
+  }
+  
+  .glass-card:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg); /* Subtle 3D rotation */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2); /* Add depth with shadow */
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.1)
+    ); /* Enhance the glass effect */
   }
   
   .nav-link {
@@ -255,10 +324,13 @@
   .3d-card {
     @apply glass-card transition-all duration-300;
     transform-style: preserve-3d;
+    perspective: 1000px; /* Ensure perspective is applied */
   }
   
   .3d-card:hover {
-    transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+    transform: perspective(1000px) rotateX(10deg) rotateY(10deg); /* Adjust rotation for a more noticeable effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
   }
 }
 

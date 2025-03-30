@@ -1,5 +1,4 @@
-
-import React, { useState, useRef } from "react";
+import React, { useRef, useState } from "react";
 import { ExternalLink, Github } from "lucide-react";
 
 interface Project {
@@ -13,82 +12,74 @@ interface Project {
 }
 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
+
   const [isHovered, setIsHovered] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
-  
+
   // 3D card effect
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
-    
+
     const card = cardRef.current;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    
+
     const rotateX = (y - centerY) / 10;
     const rotateY = (centerX - x) / 10;
-    
+
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
   };
-  
+
   const handleMouseLeave = () => {
     if (!cardRef.current) return;
     setIsHovered(false);
-    
-    cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+
+    cardRef.current.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg)";
   };
-  
-  return (
-    <div 
-      ref={cardRef}
-      className="glass-card overflow-hidden group transform-gpu"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ transition: 'transform 0.2s ease-out' }}
-    >
-      <div className="relative overflow-hidden h-48 sm:h-64">
+  return (               
+    
+    <div ref={cardRef} className="glass-card group rounded-lg overflow-hidden group transform-gpu" onMouseMove={handleMouseMove}
+    onMouseLeave={handleMouseLeave}> 
+       <div className="relative overflow-hidden h-48 sm:h-64">
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
-        <div 
+        <div
           className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
           style={{ backgroundImage: `url(${project.image})` }}
         ></div>
-        
+
         <div className="absolute bottom-0 left-0 p-4 z-20">
           <h3 className="text-xl font-bold text-white mb-1">{project.title}</h3>
           <div className="flex flex-wrap gap-2">
             {project.tags.slice(0, 3).map((tag, index) => (
-              <span 
-                key={index} 
-                className={`project-badge ${getTagColor(tag)}`}
-              >
+              <span key={index} className={`project-badge bg-purple-500 text-white`}>
                 {tag}
               </span>
             ))}
           </div>
         </div>
       </div>
-      
+
       <div className="p-6">
         <p className="text-foreground/80 mb-4 line-clamp-3">{project.description}</p>
-        
+
         <div className="flex gap-4">
-          <a 
-            href={project.demoLink} 
-            target="_blank" 
+          <a
+            href={project.demoLink}
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-sm font-medium text-purple hover:text-purple-hover transition-colors"
           >
             <ExternalLink className="w-4 h-4" />
             Live Demo
           </a>
-          
-          <a 
-            href={project.repoLink} 
-            target="_blank" 
+
+          <a
+            href={project.repoLink}
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
           >
@@ -101,33 +92,9 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   );
 };
 
-// Function to assign different colors to tags
-const getTagColor = (tag: string) => {
-  const tagMap: Record<string, string> = {
-    'React': 'bg-blue-500 text-white',
-    'Next.js': 'bg-black text-white',
-    'Node.js': 'bg-green-600 text-white',
-    'MongoDB': 'bg-green-500 text-white',
-    'PostgreSQL': 'bg-blue-700 text-white',
-    'Firebase': 'bg-yellow-500 text-white',
-    'Tailwind CSS': 'bg-sky-500 text-white',
-    'CSS Grid': 'bg-pink-500 text-white',
-    'Chart.js': 'bg-pink-600 text-white',
-    'Socket.io': 'bg-gray-700 text-white',
-    'Stripe': 'bg-indigo-500 text-white',
-    'Weather API': 'bg-cyan-500 text-white',
-    'Django': 'bg-emerald-600 text-white',
-    'AWS S3': 'bg-orange-500 text-white',
-    'React Native': 'bg-purple-500 text-white',
-    'Redux': 'bg-purple-700 text-white',
-    'Health API': 'bg-red-500 text-white',
-    'Google Maps API': 'bg-blue-600 text-white',
-  };
-  
-  return tagMap[tag] || 'bg-purple/90 text-white';
-};
-
 const Projects: React.FC = () => {
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+
   const projects: Project[] = [
     {
       id: 1,
@@ -185,24 +152,58 @@ const Projects: React.FC = () => {
     },
   ];
 
+  // Get unique tags for the filter
+  const allTags = Array.from(new Set(projects.flatMap((project) => project.tags)));
+
+  const custom_tags = ["React", "Node.js", "MongoDB", "Redux","PostgreSQL",  "Next.js", "Django", "AWS S3"];
+
+  // Filter projects based on the selected tag
+  const filteredProjects = selectedTag
+    ? projects.filter((project) => project.tags.includes(selectedTag))
+    : projects;
+
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto px-6">
         <h2 className="section-title text-center mb-16">My Projects</h2>
-        
+
+        {/* Breadcrumb-like filter */}
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <button
+            className={`px-4 py-2 rounded-lg ${
+              selectedTag === null ? "bg-purple-500 text-white" : "bg-gray-200 text-gray-700"
+            }`}
+            onClick={() => setSelectedTag(null)}
+          >
+            All
+          </button>
+          {custom_tags.map((tag) => (
+            <button
+              key={tag}
+              className={`px-4 py-2 rounded-lg ${
+                selectedTag === tag ? "bg-purple-500 text-white" : "bg-gray-200 text-gray-700"
+              }`}
+              onClick={() => setSelectedTag(tag)}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+
+        {/* Project Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project) => (
+          {filteredProjects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
-        
+
         <div className="text-center mt-12">
           <p className="text-lg text-foreground/80 mb-6">
             These are just a few examples of my work. I'm always working on new projects!
           </p>
-          <a 
-            href="https://github.com" 
-            target="_blank" 
+          <a
+            href="https://github.com"
+            target="_blank"
             rel="noopener noreferrer"
             className="btn-primary inline-flex items-center gap-2 hover:scale-105 transition-transform"
           >

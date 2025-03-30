@@ -17,7 +17,7 @@ const Footer: React.FC = () => {
           
           <div className="flex space-x-4 items-center">
             <a 
-              href="#"
+              href="https://github.com/greeshmanth27"
               target="_blank" 
               rel="noopener noreferrer"
               className="text-foreground/60 hover:text-purple transition-colors"
@@ -26,7 +26,7 @@ const Footer: React.FC = () => {
               <Github className="w-5 h-5" />
             </a>
             <a 
-              href="#"
+              href="https://www.linkedin.com/in/greeshmanth-pokuru-9774121aa/"
               target="_blank" 
               rel="noopener noreferrer"
               className="text-foreground/60 hover:text-purple transition-colors"
@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
               <Linkedin className="w-5 h-5" />
             </a>
             <a 
-              href="#"
+              href="https://x.com/Greeshmanth27"
               target="_blank" 
               rel="noopener noreferrer"
               className="text-foreground/60 hover:text-purple transition-colors"

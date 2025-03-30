@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { Moon, Sun, Menu, X } from "lucide-react";
@@ -8,33 +7,49 @@ const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [showName, setShowName] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Handle scroll event to change navbar appearance
+  // Handle scroll event to change navbar appearance and show name
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-      
+      const currentScrollY = window.scrollY;
+
+      // Show name when scrolling up or down and scrolled past a certain point
+      if (currentScrollY > 50) {
+        setShowName(true);
+      } else {
+        setShowName(false);
+      }
+
+      setIsScrolled(currentScrollY > 20);
+      setLastScrollY(currentScrollY);
+
       // Determine active section for highlighting navigation
       const sections = document.querySelectorAll("section[id]");
-      sections.forEach(section => {
-        // Cast section to HTMLElement to access offsetTop and offsetHeight
+      sections.forEach((section) => {
         const sectionElement = section as HTMLElement;
         const sectionTop = sectionElement.offsetTop - 100;
         const sectionHeight = sectionElement.offsetHeight;
         const sectionId = sectionElement.getAttribute("id") || "";
-        
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+
+        if (
+          window.scrollY >= sectionTop &&
+          window.scrollY < sectionTop + sectionHeight
+        ) {
           setActiveSection(sectionId);
-          
+
           // Also update document title
-          document.title = `Greeshmanth | ${sectionId.charAt(0).toUpperCase() + sectionId.slice(1)}`;
+          document.title = `Greeshmanth | ${
+            sectionId.charAt(0).toUpperCase() + sectionId.slice(1)
+          }`;
         }
       });
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   // Handle scroll to section
   const scrollToSection = (sectionId: string) => {
@@ -58,22 +73,22 @@ const Navigation: React.FC = () => {
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <a
-          href="#hero"
-          className="text-2xl font-bold text-primary cursor-pointer"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection("hero");
-          }}
+        {/* Show name when scrolling */}
+        <div
+          className={`text-lg font-bold transition-opacity duration-300 ${
+            theme === "dark" ? "text-purple" : "text-black"
+          }`}
         >
-          <span className="text-purple">G</span>reeshmanth
-        </a>
+          {showName && <span>Greeshmanth Pokuru</span>}
+        </div>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
           <a
             href="#about"
-            className={`nav-link ${activeSection === "about" ? "text-purple active" : ""}`}
+            className={`nav-link ${
+              activeSection === "about" ? "text-purple active" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("about");
@@ -83,7 +98,9 @@ const Navigation: React.FC = () => {
           </a>
           <a
             href="#skills"
-            className={`nav-link ${activeSection === "skills" ? "text-purple active" : ""}`}
+            className={`nav-link ${
+              activeSection === "skills" ? "text-purple active" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("skills");
@@ -93,7 +110,9 @@ const Navigation: React.FC = () => {
           </a>
           <a
             href="#projects"
-            className={`nav-link ${activeSection === "projects" ? "text-purple active" : ""}`}
+            className={`nav-link ${
+              activeSection === "projects" ? "text-purple active" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("projects");
@@ -103,7 +122,9 @@ const Navigation: React.FC = () => {
           </a>
           <a
             href="#resume"
-            className={`nav-link ${activeSection === "resume" ? "text-purple active" : ""}`}
+            className={`nav-link ${
+              activeSection === "resume" ? "text-purple active" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("resume");
@@ -113,7 +134,9 @@ const Navigation: React.FC = () => {
           </a>
           <a
             href="#experience"
-            className={`nav-link ${activeSection === "experience" ? "text-purple active" : ""}`}
+            className={`nav-link ${
+              activeSection === "experience" ? "text-purple active" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("experience");
@@ -123,7 +146,9 @@ const Navigation: React.FC = () => {
           </a>
           <a
             href="#contact"
-            className={`nav-link ${activeSection === "contact" ? "text-purple active" : ""}`}
+            className={`nav-link ${
+              activeSection === "contact" ? "text-purple active" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("contact");
@@ -178,7 +203,9 @@ const Navigation: React.FC = () => {
         <div className="container mx-auto px-6 py-4 flex flex-col space-y-4">
           <a
             href="#about"
-            className={`nav-link block py-3 text-lg ${activeSection === "about" ? "text-purple" : ""}`}
+            className={`nav-link block py-3 text-lg ${
+              activeSection === "about" ? "text-purple" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("about");
@@ -188,7 +215,9 @@ const Navigation: React.FC = () => {
           </a>
           <a
             href="#skills"
-            className={`nav-link block py-3 text-lg ${activeSection === "skills" ? "text-purple" : ""}`}
+            className={`nav-link block py-3 text-lg ${
+              activeSection === "skills" ? "text-purple" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("skills");
@@ -198,7 +227,9 @@ const Navigation: React.FC = () => {
           </a>
           <a
             href="#projects"
-            className={`nav-link block py-3 text-lg ${activeSection === "projects" ? "text-purple" : ""}`}
+            className={`nav-link block py-3 text-lg ${
+              activeSection === "projects" ? "text-purple" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("projects");
@@ -208,7 +239,9 @@ const Navigation: React.FC = () => {
           </a>
           <a
             href="#resume"
-            className={`nav-link block py-3 text-lg ${activeSection === "resume" ? "text-purple" : ""}`}
+            className={`nav-link block py-3 text-lg ${
+              activeSection === "resume" ? "text-purple" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("resume");
@@ -218,7 +251,9 @@ const Navigation: React.FC = () => {
           </a>
           <a
             href="#experience"
-            className={`nav-link block py-3 text-lg ${activeSection === "experience" ? "text-purple" : ""}`}
+            className={`nav-link block py-3 text-lg ${
+              activeSection === "experience" ? "text-purple" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("experience");
@@ -228,7 +263,9 @@ const Navigation: React.FC = () => {
           </a>
           <a
             href="#contact"
-            className={`nav-link block py-3 text-lg ${activeSection === "contact" ? "text-purple" : ""}`}
+            className={`nav-link block py-3 text-lg ${
+              activeSection === "contact" ? "text-purple" : ""
+            }`}
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("contact");

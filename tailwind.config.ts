@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,6 +19,8 @@ export default {
 			}
 		},
 		extend: {
+			transform: ['hover', 'group-hover'],
+      perspective: ['hover', 'group-hover'],
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
