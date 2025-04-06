@@ -69,22 +69,23 @@ const About: React.FC = () => {
           </div>
         </div>
         
-        <div className="mt-16 ml-32 flex justify-center">
-          <div className="stats grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="stat text-center">
-              <div className="text-4xl font-bold text-purple mb-2">1+</div>
-              <div className="text-sm opacity-80">Years Experience</div>
-            </div>
-            <div className="stat text-center">
-              <div className="text-4xl font-bold text-purple mb-2">5+</div>
-              <div className="text-sm opacity-80">Projects Completed</div>
-            </div>
-            <div className="stat text-center">
-              <div className="text-4xl font-bold text-purple mb-2">2+</div>
-              <div className="text-sm opacity-80">Happy Clients</div>
-            </div>
-          </div>
-        </div>
+        <div className="mt-16 flex justify-center items-center w-full">
+  <div className="stats grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center">
+    <div className="stat">
+      <div className="text-4xl font-bold text-purple mb-2">1+</div>
+      <div className="text-sm opacity-80">Years Experience</div>
+    </div>
+    <div className="stat">
+      <div className="text-4xl font-bold text-purple mb-2">5+</div>
+      <div className="text-sm opacity-80">Projects Completed</div>
+    </div>
+    <div className="stat">
+      <div className="text-4xl font-bold text-purple mb-2">2+</div>
+      <div className="text-sm opacity-80">Happy Clients</div>
+    </div>
+  </div>
+</div>
+
       </div>
     </section>
   );
