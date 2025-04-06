@@ -42,7 +42,7 @@ const Certification: React.FC<{
   link: string;
 }> = ({ title, issuer, date, description, image, link }) => {
   return (
-    <Card className="glass-card overflow-hidden transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
+    <Card className="glass-card neon-border overflow-hidden transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
       <div className="flex flex-col md:flex-row">
         <div className="md:w-1/3 h-100">
           <img src={image} alt={title} className="w-full h-full object-cover" />

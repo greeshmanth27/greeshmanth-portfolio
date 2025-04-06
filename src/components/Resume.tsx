@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Download } from "lucide-react";
 
@@ -28,7 +29,7 @@ const Resume: React.FC = () => {
       <div className="container mx-auto px-6 text-center">
         <h2 className="section-title text-center mb-16 relative">My Resume</h2>
 
-        <div className="max-w-md mx-auto glass-card p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col items-center">
+        <div className="max-w-md mx-auto glass-card neon-border p-10 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 flex flex-col items-center">
           <h3 className="text-2xl font-bold text-purple mb-6">Download My CV</h3>
           <p className="text-muted-foreground mb-8">
             Get a comprehensive overview of my skills, experience, and qualifications.
