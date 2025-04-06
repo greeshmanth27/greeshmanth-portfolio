@@ -1,4 +1,3 @@
-
 import React, { useRef, useState } from "react";
 import { ExternalLink, Github } from "lucide-react";
 
@@ -43,7 +42,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
   };
   return (               
     
-    <div ref={cardRef} className="glass-card neon-border group rounded-lg overflow-hidden group transform-gpu" onMouseMove={handleMouseMove}
+    <div ref={cardRef} className="glass-card group rounded-lg overflow-hidden group transform-gpu" onMouseMove={handleMouseMove}
     onMouseLeave={handleMouseLeave}> 
        <div className="relative overflow-hidden h-48 sm:h-64">
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
