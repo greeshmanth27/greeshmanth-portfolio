@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -168,6 +169,36 @@ footer:hover ~ .custom-cursor::after {
     overflow: hidden;
   }
 
+  /* Border light animation */
+  .glass-card::after,
+  .glass-card1::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: 
+      linear-gradient(90deg, transparent 0%, rgba(168, 85, 247, 0.4) 50%, transparent 100%) top/200% 1px,
+      linear-gradient(180deg, transparent 0%, rgba(168, 85, 247, 0.4) 50%, transparent 100%) right/1px 200%,
+      linear-gradient(270deg, transparent 0%, rgba(168, 85, 247, 0.4) 50%, transparent 100%) bottom/200% 1px,
+      linear-gradient(0deg, transparent 0%, rgba(168, 85, 247, 0.4) 50%, transparent 100%) left/1px 200%;
+    background-repeat: no-repeat;
+    animation: border-light-rotate 4s linear infinite;
+  }
+
+  /* Different animation for dark theme */
+  .dark .glass-card::after,
+  .dark .glass-card1::after {
+    background: 
+      linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.3) 20%, rgba(168, 85, 247, 0.3) 50%, rgba(0, 0, 0, 0.3) 80%, transparent 100%) top/200% 1px,
+      linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 20%, rgba(168, 85, 247, 0.3) 50%, rgba(0, 0, 0, 0.3) 80%, transparent 100%) right/1px 200%,
+      linear-gradient(270deg, transparent 0%, rgba(0, 0, 0, 0.3) 20%, rgba(168, 85, 247, 0.3) 50%, rgba(0, 0, 0, 0.3) 80%, transparent 100%) bottom/200% 1px,
+      linear-gradient(0deg, transparent 0%, rgba(0, 0, 0, 0.3) 20%, rgba(168, 85, 247, 0.3) 50%, rgba(0, 0, 0, 0.3) 80%, transparent 100%) left/1px 200%;
+    background-repeat: no-repeat;
+  }
+
   /* Moving border light effect */
   .glass-card::before,
   .glass-card1::before {
@@ -293,6 +324,24 @@ footer:hover ~ .custom-cursor::after {
 @keyframes border-light-move {
   0% { transform: rotate(45deg) translateX(-100%); }
   100% { transform: rotate(45deg) translateX(100%); }
+}
+
+@keyframes border-light-rotate {
+  0% {
+    background-position: 200% 0, 100% 200%, 0 100%, 0 200%;
+  }
+  25% {
+    background-position: 200% 0, 100% 0, 0 100%, 0 200%;
+  }
+  50% {
+    background-position: 200% 0, 100% 0, 0 0, 0 200%;
+  }
+  75% {
+    background-position: 200% 0, 100% 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 0 0, 100% 0, 0 0, 0 0;
+  }
 }
 
 @keyframes fade-in {
