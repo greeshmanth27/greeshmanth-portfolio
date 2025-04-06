@@ -1,7 +1,9 @@
+
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowDown } from "lucide-react";
+import ProfilePicture from "./ProfilePicture";
 
 const phrases = [
   "Full Stack Developer | Problem Solver",
@@ -9,7 +11,7 @@ const phrases = [
   "Spring Boot & Microservices Developer",
   "Cybersecurity & Cloud Computing Learner",
   "Passionate About Scalable Web Apps"
-  ];
+];
 
 const Hero: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -18,9 +20,6 @@ const Hero: React.FC = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
   
-   
-    
-
   // Typing effect animation
   useEffect(() => {
     const tick = () => {
@@ -165,7 +164,10 @@ const Hero: React.FC = () => {
         style={{ opacity: 0.7 }}
       />
       <div className="container mx-auto px-6 z-10 text-center">
-        <div className="animate-fade-in">
+        <div className="animate-fade-in flex flex-col items-center">
+          {/* Add ProfilePicture component here */}
+          <ProfilePicture />
+          
           <h1 className="text-5xl md:text-7xl font-bold mb-4">
             Hi, I'm <span className="text-purple">Greeshmanth Pokuru</span> 👋
           </h1>
