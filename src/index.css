@@ -150,12 +150,12 @@ footer:hover ~ .custom-cursor::after {
     @apply w-3/4;
   }
   
- .glass-card1 {
-  @apply rounded-xl shadow-lg backdrop-blur-lg bg-white/10 dark:bg-black/20 border border-white/20 dark:border-white/10;
-  transform-style: preserve-3d; /* Enable 3D transformations */
-  perspective: 1000px; /* Add perspective for 3D effect */
-  transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth transition */
-}
+  .glass-card1 {
+    @apply rounded-xl shadow-lg backdrop-blur-lg bg-white/10 dark:bg-black/20 border border-white/20 dark:border-white/10;
+    transform-style: preserve-3d; /* Enable 3D transformations */
+    perspective: 1000px; /* Add perspective for 3D effect */
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth transition */
+  }
   .glass-card {
     @apply rounded-xl shadow-lg backdrop-blur-lg bg-white/10 dark:bg-black/20 border border-white/20 dark:border-white/10;
     transform-style: preserve-3d; /* Enable 3D transformations */
