@@ -5,9 +5,11 @@ import { UserRound } from "lucide-react";
 
 // Array of profile images to cycle through
 const profileImages = [
-  "/assets/profile1.jpg", // Replace these with your actual image paths
-  "/assets/profile2.jpg",
-  "/assets/profile3.jpg",
+  "/assests/1.jpg", // Replace these with your actual image paths
+  "/assests/2.jpg", // Replace these with your
+  "/assests/3.jpg",// actual image paths
+  "/assests/4.jpg", // Replace these with your actual image paths
+  "/assests/5.jpg", // Replace these with your actual image paths
 ];
 
 const ProfilePicture: React.FC = () => {
