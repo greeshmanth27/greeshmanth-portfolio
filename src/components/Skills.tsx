@@ -105,7 +105,7 @@ const Skills: React.FC = () => {
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-semibold mb-6">Other Technical Skills</h3>
           <div className="flex flex-wrap justify-center gap-3">
-            {["TypeScript", "Redux", "Next.js", "GraphQL", "MongoDB", "PostgreSQL", "Git", "Tailwind CSS","Git and Github","MERN Stack"].map((skill, index) => (
+            {["TypeScript", "JavaScript","Redux", "Next.js", "GraphQL", "MongoDB", "PostgreSQL","Tailwind CSS","MERN Stack"].map((skill, index) => (
               <span
                 key={index}
                 className="px-4 py-2 bg-secondary rounded-full text-sm font-medium hover:bg-purple hover:text-white transition-colors duration-300"
