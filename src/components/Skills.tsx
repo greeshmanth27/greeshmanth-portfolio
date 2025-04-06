@@ -44,8 +44,9 @@ const Skills: React.FC = () => {
   
   const devOpsSkills = [
     { icon: "☁️", name: "AWS & Cloud Computing", level: 75, color: "#FF9900" },
-    { icon: "🚢", name: "CI/CD (GitHub Actions)", level: 80, color: "#8A2BE2" },
     { icon: "📊", name: "Performance Optimization", level: 85, color: "#8A2BE2" },
+    { icon: "🧰", name: "Git", level: 90, color: "#F1502F" },
+    { icon: "🐱", name: "GitHub", level: 90, color: "#24292e" },
   ];
   
 
