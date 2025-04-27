@@ -9,13 +9,9 @@ const phrases = [
   "Full Stack Developer | Problem Solver",
   "React, Next.js & Django Enthusiast",
   "Spring Boot & Microservices Developer",
+  "Cybersecurity & Cloud Computing Learner",
   "Passionate About Scalable Web Apps"
 ];
-
- 
-
-
-
 
 const Hero: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
