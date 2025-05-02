@@ -235,7 +235,7 @@ const Navigation: React.FC = () => {
           >
             Skills
           </a>
-          <a
+          {/* <a
             href="#statistics"
             className={`nav-link block py-3 text-lg ${activeSection === "statistics" ? "text-purple" : ""}`}
             onClick={(e) => {
@@ -244,7 +244,7 @@ const Navigation: React.FC = () => {
             }}
           >
             Statistics
-          </a>
+          </a> */}
           <a
             href="#projects"
             className={`nav-link block py-3 text-lg ${
