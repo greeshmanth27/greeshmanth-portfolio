@@ -108,7 +108,7 @@ const Navigation: React.FC = () => {
           >
             Skills
           </a>
-          <a
+          {/* <a
             href="#statistics"
             className={`nav-link ${activeSection === "statistics" ? "text-purple active" : ""}`}
             onClick={(e) => {
@@ -117,7 +117,7 @@ const Navigation: React.FC = () => {
             }}
           >
             Statistics
-          </a>
+          </a> */}
           <a
             href="#projects"
             className={`nav-link ${
@@ -130,18 +130,7 @@ const Navigation: React.FC = () => {
           >
             Projects
           </a>
-          <a
-            href="#resume"
-            className={`nav-link ${
-              activeSection === "resume" ? "text-purple active" : ""
-            }`}
-            onClick={(e) => {
-              e.preventDefault();
-              scrollToSection("resume");
-            }}
-          >
-            Resume
-          </a>
+          
           <a
             href="#experience"
             className={`nav-link ${
@@ -153,6 +142,18 @@ const Navigation: React.FC = () => {
             }}
           >
             Experience
+          </a>
+          <a
+            href="#resume"
+            className={`nav-link ${
+              activeSection === "resume" ? "text-purple active" : ""
+            }`}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection("resume");
+            }}
+          >
+            Resume
           </a>
           <a
             href="#contact"
