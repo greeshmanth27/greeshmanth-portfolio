@@ -125,6 +125,16 @@ const Projects: React.FC = () => {
       demoLink: "https://v0-real-time-weather-app-eight.vercel.app/",
       repoLink: "#",
     },
+    {
+      id: 4,
+      title: "Task Management App",
+      description: "A full-stack task management application with  task creation, and real-time updates,Deadlines,Dashboard",
+      image: "https://raw.githubusercontent.com/devatsrs/task-management-app/master/screenshot.jpg",
+      tags: ["React", "Next js","Tailwind CSS"],
+      demoLink: "https://task-management-application-five-theta.vercel.app/",
+      repoLink: "https://github.com/greeshmanth27/Task-management-Application.git",
+    },
+    
   ];
 
   // Get unique tags for the filter
