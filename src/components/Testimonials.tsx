@@ -10,7 +10,7 @@ const Testimonials = () => {
   id: 1,
   name: "Shanmukha Kanamarlapudi",
   title: "Managing Director, kanamarlapudi financial services",
-  image: "/assets/testmonial/shanmukha.jpg",
+  image: "assests/testmonial/shanmukha.jpg",
   rating: 5,
   testimonial: "Shanmukha provided us with precise financial planning and compliance support. His dedication, timely advice, and clear communication made complex processes smooth and stress-free.",
   workType: "Chartered Accountant Services",
