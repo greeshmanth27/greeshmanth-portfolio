@@ -1,7 +1,8 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Star, ExternalLink } from "lucide-react";
 
 const Testimonials = () => {
   const testimonials = [
@@ -17,7 +18,8 @@ const Testimonials = () => {
         "40% increase in user engagement",
         "99.9% uptime achieved",
         "3-week delivery timeline met"
-      ]
+      ],
+      workLink: "https://techstart-demo.vercel.app"
     },
     {
       id: 2,
@@ -31,7 +33,8 @@ const Testimonials = () => {
         "50% faster load times",
         "Mobile-responsive design",
         "100% client satisfaction"
-      ]
+      ],
+      workLink: "https://dataflow-app.netlify.app"
     },
     {
       id: 3,
@@ -45,7 +48,8 @@ const Testimonials = () => {
         "2 weeks ahead of deadline",
         "Zero post-launch bugs",
         "Real-time data visualization"
-      ]
+      ],
+      workLink: "https://innovatelab-dashboard.herokuapp.com"
     },
     {
       id: 4,
@@ -59,7 +63,8 @@ const Testimonials = () => {
         "30% increase in conversions",
         "PCI DSS compliant payments",
         "Multi-currency support"
-      ]
+      ],
+      workLink: "https://ecommercehub-store.com"
     }
   ];
 
@@ -111,16 +116,29 @@ const Testimonials = () => {
                 </blockquote>
 
                 {/* Proof Section */}
-                <div className="space-y-2">
-                  <h5 className="font-medium text-sm text-foreground">Results Achieved:</h5>
-                  <ul className="space-y-1">
-                    {testimonial.proof.map((item, index) => (
-                      <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <h5 className="font-medium text-sm text-foreground">Results Achieved:</h5>
+                    <ul className="space-y-1">
+                      {testimonial.proof.map((item, index) => (
+                        <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Work Example Link */}
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full"
+                    onClick={() => window.open(testimonial.workLink, '_blank')}
+                  >
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    View Work Example
+                  </Button>
                 </div>
               </CardContent>
             </Card>
