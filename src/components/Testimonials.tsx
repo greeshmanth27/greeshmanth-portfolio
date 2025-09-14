@@ -6,66 +6,22 @@ import { Star, ExternalLink } from "lucide-react";
 
 const Testimonials = () => {
   const testimonials = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      title: "CEO, TechStart Inc.",
-      image: "/assests/1.jpg",
-      rating: 5,
-      testimonial: "Greeshmanth delivered an exceptional full-stack web application that transformed our business operations. The attention to detail and performance optimization was outstanding.",
-      workType: "Full-Stack Web Development",
-      proof: [
-        "40% increase in user engagement",
-        "99.9% uptime achieved",
-        "3-week delivery timeline met"
-      ],
-      workLink: "https://techstart-demo.vercel.app"
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      title: "CTO, DataFlow Solutions",
-      image: "/assests/2.jpg",
-      rating: 5,
-      testimonial: "The React application built by Greeshmanth exceeded our expectations. Clean code, responsive design, and seamless user experience across all devices.",
-      workType: "React Frontend Development",
-      proof: [
-        "50% faster load times",
-        "Mobile-responsive design",
-        "100% client satisfaction"
-      ],
-      workLink: "https://dataflow-app.netlify.app"
-    },
-    {
-      id: 3,
-      name: "Emily Rodriguez",
-      title: "Product Manager, InnovateLab",
-      image: "/assests/3.jpg",
-      rating: 5,
-      testimonial: "Greeshmanth's expertise in modern web technologies helped us launch our product ahead of schedule. The API integration was flawless and the dashboard is intuitive.",
-      workType: "API Integration & Dashboard",
-      proof: [
-        "2 weeks ahead of deadline",
-        "Zero post-launch bugs",
-        "Real-time data visualization"
-      ],
-      workLink: "https://innovatelab-dashboard.herokuapp.com"
-    },
-    {
-      id: 4,
-      name: "David Kim",
-      title: "Founder, EcommerceHub",
-      image: "/assests/4.jpg",
-      rating: 5,
-      testimonial: "The e-commerce platform built by Greeshmanth has been a game-changer for our business. Secure payment integration and smooth checkout process.",
-      workType: "E-commerce Development",
-      proof: [
-        "30% increase in conversions",
-        "PCI DSS compliant payments",
-        "Multi-currency support"
-      ],
-      workLink: "https://ecommercehub-store.com"
-    }
+  {
+  id: 1,
+  name: "Shanmukha Kanamarlapudi",
+  title: "Managing Director, kanamarlapudi financial services",
+  image: "/assets/testimonial/shanmukha.jpg",
+  rating: 5,
+  testimonial: "Shanmukha provided us with precise financial planning and compliance support. His dedication, timely advice, and clear communication made complex processes smooth and stress-free.",
+  workType: "Chartered Accountant Services",
+  proof: [
+    "Reduced tax liabilities by 18%",
+    "Ensured 100% statutory compliance",
+    "Delivered reports within 1-week timeline"
+  ],
+  workLink: "https://shanmukha-portfolio-xi.vercel.app"
+}
+
   ];
 
   return (
