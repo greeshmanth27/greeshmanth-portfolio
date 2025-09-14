@@ -9,6 +9,7 @@ import Projects from "@/components/Projects";
 import Resume from "@/components/Resume";
 import Statistics from "@/components/Statistics";
 import Experience from "@/components/Experience";
+import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import { useDynamicCursor } from "@/hooks/useDynamicCursor";
@@ -64,6 +65,7 @@ const Index = () => {
           {/* <Statistics /> */}
           <Projects />
           <Experience />
+          <Testimonials />
           <Resume />
           <Contact />
         </main>
