@@ -6,20 +6,20 @@ import { Star, ExternalLink } from "lucide-react";
 
 const Testimonials = () => {
   const testimonials = [
-  {
-  id: 1,
-  name: "Shanmukha Kanamarlapudi",
-  title: "Managing Director, kanamarlapudi financial services",
-  image: "assests/testmonial/shanmukha.jpg",
-  rating: 5,
-  testimonial: "Shanmukha provided us with precise financial planning and compliance support. His dedication, timely advice, and clear communication made complex processes smooth and stress-free.",
-  workType: "Chartered Accountant Services",
-  proof: [
-    "Reduced tax liabilities by 18%",
-    "Ensured 100% statutory compliance",
-    "Delivered reports within 1-week timeline"
+ {
+  "id": 1,
+  "name": "Shanmukha Kanamarlapudi",
+  "title": "Chartered Accountant & Financial Consultant",
+  "image": "assets/testimonial/shanmukha.jpg",
+  "rating": 5,
+  "testimonial": "Shanmukha is a trusted Chartered Accountant who delivers tailored financial and compliance solutions for businesses and individuals. His client-focused approach, clear communication, and proven expertise in tax planning and financial strategy make him the go-to advisor for sustainable growth.",
+  "workType": "Professional CA & Business Advisory Services",
+  "proof": [
+    "Helped businesses reduce tax burdens while staying compliant",
+    "Advised startups and SMEs on financial planning for growth",
+    "Ensured timely, transparent, and accurate reporting"
   ],
-  workLink: "https://shanmukha-portfolio-xi.vercel.app"
+  "workLink": "https://shanmukha-portfolio-xi.vercel.app"
 }
 
   ];
