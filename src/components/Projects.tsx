@@ -134,6 +134,15 @@ const Projects: React.FC = () => {
       demoLink: "https://task-management-application-five-theta.vercel.app/",
       repoLink: "https://github.com/greeshmanth27/Task-management-Application.git",
     },
+    {
+      id: 5,
+      title: "Food Reels App",
+      description: "A food recipe application that allows users to search for recipes, view detailed instructions, and save their favorite dishes.",
+      image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3",
+      tags: ["React", "Node.js", "MongoDB", "Redux"],
+      demoLink: "https://github.com/greeshmanth27/Food_Shorts.git",
+      repoLink: "https://github.com/greeshmanth27/Food_Shorts.git"
+    }
     
   ];
 
