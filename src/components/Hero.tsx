@@ -9,8 +9,10 @@ const phrases = [
   "Full Stack Developer | Problem Solver",
   "React, Next.js & Django Enthusiast",
   "Spring Boot & Microservices Developer",
+  "Vibe Coder | Tech Innovator",
   "Cybersecurity & Cloud Computing Learner",
-  "Passionate About Scalable Web Apps"
+  "Passionate About Scalable Web Apps",
+  
 ];
 
 const Hero: React.FC = () => {
